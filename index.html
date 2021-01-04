@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+  
+/* 
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+} */
+
+.login-form-2{
+    padding: 5%;
+    background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.login-form-2 hr.line{
+    border-top: 1px dashed #0062cc;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%; 
+    border-radius: 1rem;
+    padding: 4%;
+    border: none;
+    cursor: pointer;
+}
+
+ .login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+} 
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login-form-2 span{
+    color: #fff;
+}
+
+</style>
+</head>
+<body>
+  <div class="container login-container">
+    <div class="row">
+        <!--Login form-->
+            <form>
+                <div  class="col-md-offset-3 col-md-6 login-form-2">
+                    <h3>Login </h3> <br><br>
+                <div class="form-group">
+                    <input type="text" id="userid" class="form-control" placeholder="Enter your Username" value=""  />
+                   
+                </div><br>
+                <div class="form-group">
+                    <input type="password"  id="pwd"  class="form-control" placeholder="Enter Your Password *"  />
+                </div><br><br>
+                <div  class="col-xs-offset-4">
+                <div class="form-group ">
+                    <input type="submit"  class="btnSubmit" onclick="login()" />
+                </div>
+                </div>
+                
+            </div> 
+            </form>
+        
+    </div>
+</div>
+<script>
+  function login(){
+    var id=document.getElementById("userid").value;
+    var pwd=document.getElementById("pwd").value;
+    console.log(id);console.log(pwd);
+    if(id=='Global Townhall' && pwd=='wgt123'){
+    window.open('one.html'); 
+   
+   }
+    else alert("wrong Credentials");
+    
+  }
+</script>
+
+</body>
+</html>

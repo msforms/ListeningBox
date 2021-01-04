@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+     textarea {
+            resize: none;
+           
+            height: 200px;
+        }
+        .droptarget {
+        float: left; 
+        width: 300px; 
+        height: 300px;
+        margin: 15px;
+        padding: 10px;
+        background-image:url(firstbox.png);
+        background-repeat: no-repeat;
+        background-size: 400px 400px;
+        }
+        
+    
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 20%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  
+}
+</style>
+</head>
+<body onclick="aju()">
+ 
+
+<div class="container">
+ 
+    <div class="col-md-offset-3 col-md-6">
+        <h1 id="heading" >Winter Global Townhall </h1>
+<h3 class="col-md-offset-3 col-md-6">We are Listening! </h3>
+       
+        
+        <label for="grievance"></label>
+       
+        <div class="droptarget"  id="aj" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+       
+       
+        <div ondrop="drop(event)" ondragover="allowDrop(event)">
+          <div >
+            <input tyoe="text" class="col-xs-12" placeholder="Enter Your Name" id="mydivheader1" draggable="true" id="dragtarget">
+            <textarea  class="col-xs-12" name="grievance" id="mydivheader" draggable="true" id="dragtarget" name="entry.982559871" ondragstart="dragStart(event)"  placeholder="Drop your Suggestion  in the box" onmousedown="ajufalse()" onmouseup="aju()"></textarea>
+          </div>
+        </div>
+          
+
+
+    </div>
+</div>
+
+
+
+
+<script>
+  
+    function dragStart(event) {
+          event.dataTransfer.setData("Text", event.target.id);
+        //   document.getElementById("aj").style.backgroundColor = "red";
+        }
+        
+        function allowDrop(event) {
+          event.preventDefault();
+          
+         
+        }
+        function aju(){
+            document.getElementById("aj").style.backgroundColor = "white";
+           
+            
+        }
+        function ajufalse(){
+        
+            document.getElementById("aj").style.backgroundColor = "red";
+        }
+       
+    
+        
+        function drop(event) {
+          event.preventDefault();
+          var data = event.dataTransfer.getData("Text");
+       
+        
+        var field1 = $("#mydivheader").val();
+        var field2 = $("#mydivheader1").val();
+        
+        
+        if(field1 != "" && field2!=""){
+            document.getElementById("mydivheader").style.visibility = "hidden";
+            document.getElementById("mydivheader1").style.visibility = "hidden";
+
+          alert("Success");
+          aju();
+          document.getElementById("heading").innerHTML="Submitted Successfully";
+          var path='secondbox.png';
+        document.getElementById("aj").style.backgroundImage="url("+path+")";
+          return postToGoogle();
+          
+        }}
+
+function postToGoogle() {
+                var field1 = $("#mydivheader").val();
+                var field2 = $("#mydivheader1").val();
+               console.log(field1)
+               console.log(field2)
+ 				
+				if(field1 == "" &&  field2!=""){
+					alert('Please Fill any grievance');
+					document.getElementById("mydivheader").focus();
+          document.getElementById("mydivheader1").focus();
+					return false;
+				}
+
+				
+	
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSfljMNaAiGi_IE-IdMTHzhxDMDlaJFwX6WImpWPNwjarvTCJQ/formResponse?",
+					data: {"entry.1566850145": field1,"entry.2037647444": field2},
+                    type: "POST",
+                    dataType: "xml",
+                    success: function(d)
+					{
+					
+          },
+					error: function(x, y, z)
+						{
+
+							$('#success-msg').show();
+							$('#form').hide();
+							
+						}
+                });
+			
+				return false;
+            }
+</script>
+</body>
+</html>
